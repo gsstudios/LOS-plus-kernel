@@ -4,6 +4,7 @@
 # SmartPack-Kernel Build Script
 # 
 # Author: sunilpaulmathew <sunil.kde@gmail.com>
+# Modifed by: gsstudios <josh.lay@exemail.com.au>
 #
 
 #
@@ -39,17 +40,13 @@
 
 # Toolchains
 
-GOOGLE="/home/sunil/android-ndk-r15c/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/arm-linux-androideabi-"
-
-UBERTC="/home/sunil/UBERTC-arm-eabi-8.0/bin/arm-linux-androideabi-"
-
 LINARO="/home/sunil/arm-linux-androideabi-7.x-linaro/bin/arm-linaro-linux-androideabi-"
 
-TOOLCHAIN="linaro"	# Leave empty for using Google’s stock toolchain
+TOOLCHAIN="linaro"
 
 ARCHITECTURE="arm"
 
-KERNEL_NAME="SmartPack-Kernel"
+KERNEL_NAME="SmartPack-Kernel-Unofficial"
 
 KERNEL_VERSION="stable-v11_r5"   # leave as such, if no specific version tag
 
@@ -67,19 +64,9 @@ COLOR_NEUTRAL="\033[0m"
 
 export ARCH=$ARCHITECTURE
 
-if [ -z "$TOOLCHAIN" ]; then
-	echo -e $COLOR_GREEN"\n Toolchain: Google's stock gcc-4.9.x\n"$COLOR_NEUTRAL
-	export CROSS_COMPILE="${CCACHE} $GOOGLE"
-else
-	if [ "ubertc" == "$TOOLCHAIN" ]; then
-	echo -e $COLOR_GREEN"\n Toolchain: UBERTC-8.x\n"$COLOR_NEUTRAL
-		export CROSS_COMPILE="${CCACHE} $UBERTC"
-	else
-		if [ "linaro" == "$TOOLCHAIN" ]; then
-		echo -e $COLOR_GREEN"\n Toolchain: Linaro-7.x\n"$COLOR_NEUTRAL
-			export CROSS_COMPILE="${CCACHE} $LINARO"
-		fi
-	fi
+if [ "linaro" == "$TOOLCHAIN" ]; then
+	echo -e $COLOR_GREEN"\n Toolchain: Linaro-7.x\n"$COLOR_NEUTRAL
+	export CROSS_COMPILE="${CCACHE} $LINARO"
 fi
 
 if [ -z "$NUM_CPUS" ]; then
