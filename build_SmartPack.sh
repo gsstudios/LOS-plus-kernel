@@ -40,9 +40,7 @@
 
 # Toolchains
 
-LINARO="/home/sunil/arm-linux-androideabi-7.x-linaro/bin/arm-linaro-linux-androideabi-"
-
-TOOLCHAIN="linaro"
+TOOLCHAIN="/home/josh/toolchain/linaro/bin/arm-linaro-linux-androideabi-"
 
 ARCHITECTURE="arm"
 
@@ -64,10 +62,9 @@ COLOR_NEUTRAL="\033[0m"
 
 export ARCH=$ARCHITECTURE
 
-if [ "linaro" == "$TOOLCHAIN" ]; then
-	echo -e $COLOR_GREEN"\n Toolchain: Linaro-7.x\n"$COLOR_NEUTRAL
-	export CROSS_COMPILE="${CCACHE} $LINARO"
-fi
+echo -e $COLOR_GREEN"\n Toolchain: Linaro\n"$COLOR_NEUTRAL
+
+export CROSS_COMPILE="${CCACHE} $TOOLCHAIN"
 
 if [ -z "$NUM_CPUS" ]; then
 	NUM_CPUS=`grep -c ^processor /proc/cpuinfo`

@@ -40,15 +40,17 @@
 
 # Toolchains
 
-LINARO="/home/sunil/arm-linux-androideabi-7.x-linaro/bin/arm-linaro-linux-androideabi-"
-
-TOOLCHAIN="linaro"
+TOOLCHAIN="/home/josh/toolchain/linaro/bin/arm-linaro-linux-androideabi-"
 
 ARCHITECTURE="arm"
 
 KERNEL_NAME="SmartPack-Kernel-Unofficial"
 
-KERNEL_VERSION="stable-v11_r5"   # leave as such, if no specific version tag
+KERNEL_VARIANT="kltekor"	# only one variant at a time
+
+KERNEL_VERSION="test"   # leave as such, if no specific version tag
+
+KERNEL_DEFCONFIG="SmartPack_@$KERNEL_VARIANT@_defconfig"
 
 KERNEL_DATE="$(date +"%Y%m%d")"
 
@@ -64,10 +66,10 @@ COLOR_NEUTRAL="\033[0m"
 
 export ARCH=$ARCHITECTURE
 
-if [ "linaro" == "$TOOLCHAIN" ]; then
-	echo -e $COLOR_GREEN"\n Toolchain: Linaro-7.x\n"$COLOR_NEUTRAL
-	export CROSS_COMPILE="${CCACHE} $LINARO"
-fi
+# we are only using linaro toolchain
+echo -e $COLOR_GREEN"\n building $KERNEL_NAME v. $KERNEL_VERSION for $KERNEL_VARIANT using Linaro toolchain\n"$COLOR_NEUTRAL
+
+export CROSS_COMPILE="${CCACHE} $TOOLCHAIN"
 
 if [ -z "$NUM_CPUS" ]; then
 	NUM_CPUS=`grep -c ^processor /proc/cpuinfo`
