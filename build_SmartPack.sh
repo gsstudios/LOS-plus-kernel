@@ -5,6 +5,9 @@
 # 
 # Author: sunilpaulmathew <sunil.kde@gmail.com>
 # Modifed by: gsstudios <josh.lay@exemail.com.au>
+# 
+# This script has been modified to only build using Linaro TC
+# and to build for the klte and kltespr (G900P + G900I) only.
 #
 
 #
@@ -46,7 +49,7 @@ ARCHITECTURE="arm"
 
 KERNEL_NAME="SmartPack-Kernel-Unofficial"
 
-KERNEL_VERSION="stable-v11_r5"   # leave as such, if no specific version tag
+KERNEL_VERSION="stable-v1"   # leave as such, if no specific version tag
 
 KERNEL_DATE="$(date +"%Y%m%d")"
 
@@ -68,66 +71,6 @@ export CROSS_COMPILE="${CCACHE} $TOOLCHAIN"
 
 if [ -z "$NUM_CPUS" ]; then
 	NUM_CPUS=`grep -c ^processor /proc/cpuinfo`
-fi
-
-echo -e $COLOR_GREEN"\n building $KERNEL_NAME v. $KERNEL_VERSION for kltekor\n"$COLOR_NEUTRAL
-
-# creating backups
-cp scripts/mkcompile_h release_SmartPack/
-cp arch/arm/configs/SmartPack_@kltekor@_defconfig release_SmartPack/
-
-# updating kernel name
-
-sed -i "s;SmartPack-Kernel;$KERNEL_NAME-kltekor;" scripts/mkcompile_h;
-
-# updating kernel version
-
-sed -i "s;stable;-$KERNEL_VERSION;" arch/arm/configs/SmartPack_@kltekor@_defconfig;
-
-if [ -e output_kltekor/.config ]; then
-	rm -f output_kltekor/.config
-	if [ -e output_kltekor/arch/arm/boot/zImage ]; then
-		rm -f output_kltekor/arch/arm/boot/zImage
-	fi
-else
-mkdir output_kltekor
-fi
-
-make -C $(pwd) O=output_kltekor SmartPack_@kltekor@_defconfig && make -j$NUM_CPUS -C $(pwd) O=output_kltekor
-
-if [ -e output_kltekor/arch/arm/boot/zImage ]; then
-	echo -e $COLOR_GREEN"\n copying zImage to anykernel directory\n"$COLOR_NEUTRAL
-	cp output_kltekor/arch/arm/boot/zImage anykernel_SmartPack/
-	# compile dtb if required
-	if [ "y" == "$COMPILE_DTB" ]; then
-		echo -e $COLOR_GREEN"\n compiling device tree blob (dtb)\n"$COLOR_NEUTRAL
-		if [ -f output_kltekor/arch/arm/boot/dt.img ]; then
-			rm -f output_kltekor/arch/arm/boot/dt.img
-		fi
-		chmod 777 tools/dtbToolCM
-		tools/dtbToolCM -2 -o output_kltekor/arch/arm/boot/dt.img -s 2048 -p output_kltekor/scripts/dtc/ output_kltekor/arch/arm/boot/
-		# removing old dtb (if any)
-		if [ -f anykernel_SmartPack/dtb ]; then
-			rm -f anykernel_SmartPack/dtb
-		fi
-		# copying generated dtb to anykernel directory
-		if [ -e output_kltekor/arch/arm/boot/dt.img ]; then
-			mv -f output_kltekor/arch/arm/boot/dt.img anykernel_SmartPack/dtb
-		fi
-	fi
-	echo -e $COLOR_GREEN"\n generating recovery flashable zip file\n"$COLOR_NEUTRAL
-	cd anykernel_SmartPack/ && zip -r9 $KERNEL_NAME-kltekor-$KERNEL_VERSION-$KERNEL_DATE.zip * -x README.md $KERNEL_NAME-kltekor-$KERNEL_VERSION-$KERNEL_DATE.zip && cd ..
-	echo -e $COLOR_GREEN"\n cleaning...\n"$COLOR_NEUTRAL
-	rm anykernel_SmartPack/zImage && mv anykernel_SmartPack/$KERNEL_NAME* release_SmartPack/
-	# restoring backups
-	mv release_SmartPack/mkcompile_h scripts/
-	mv release_SmartPack/SmartPack_@kltekor@_defconfig arch/arm/configs/
-	echo -e $COLOR_GREEN"\n building SmarPack-Kernel for kltekor is finished...\n"$COLOR_NEUTRAL
-else
-	# restoring backups
-	mv release_SmartPack/mkcompile_h scripts/
-	mv release_SmartPack/SmartPack_@kltekor@_defconfig arch/arm/configs/
-	echo -e $COLOR_GREEN"\n Building error... zImage not found...\n"$COLOR_NEUTRAL
 fi
 
 echo -e $COLOR_GREEN"\n building $KERNEL_NAME v. $KERNEL_VERSION for klte\n"$COLOR_NEUTRAL
@@ -187,66 +130,6 @@ else
 	# restoring backups
 	mv release_SmartPack/mkcompile_h scripts/
 	mv release_SmartPack/SmartPack_@klte@_defconfig arch/arm/configs/
-	echo -e $COLOR_GREEN"\n Building error... zImage not found...\n"$COLOR_NEUTRAL
-fi
-
-echo -e $COLOR_GREEN"\n building $KERNEL_NAME v. $KERNEL_VERSION for klteduos\n"$COLOR_NEUTRAL
-
-# creating backups
-cp scripts/mkcompile_h release_SmartPack/
-cp arch/arm/configs/SmartPack_@klteduos@_defconfig release_SmartPack/
-
-# updating kernel name
-
-sed -i "s;SmartPack-Kernel;$KERNEL_NAME-klteduos;" scripts/mkcompile_h;
-
-# updating kernel version
-
-sed -i "s;stable;-$KERNEL_VERSION;" arch/arm/configs/SmartPack_@klteduos@_defconfig;
-
-if [ -e output_klteduos/.config ]; then
-	rm -f output_klteduos/.config
-	if [ -e output_klteduos/arch/arm/boot/zImage ]; then
-		rm -f output_klteduos/arch/arm/boot/zImage
-	fi
-else
-mkdir output_klteduos
-fi
-
-make -C $(pwd) O=output_klteduos SmartPack_@klteduos@_defconfig && make -j$NUM_CPUS -C $(pwd) O=output_klteduos
-
-if [ -e output_klteduos/arch/arm/boot/zImage ]; then
-	echo -e $COLOR_GREEN"\n copying zImage to anykernel directory\n"$COLOR_NEUTRAL
-	cp output_klteduos/arch/arm/boot/zImage anykernel_SmartPack/
-	# compile dtb if required
-	if [ "y" == "$COMPILE_DTB" ]; then
-		echo -e $COLOR_GREEN"\n compiling device tree blob (dtb)\n"$COLOR_NEUTRAL
-		if [ -f output_klteduos/arch/arm/boot/dt.img ]; then
-			rm -f output_klteduos/arch/arm/boot/dt.img
-		fi
-		chmod 777 tools/dtbToolCM
-		tools/dtbToolCM -2 -o output_klteduos/arch/arm/boot/dt.img -s 2048 -p output_klteduos/scripts/dtc/ output_klteduos/arch/arm/boot/
-		# removing old dtb (if any)
-		if [ -f anykernel_SmartPack/dtb ]; then
-			rm -f anykernel_SmartPack/dtb
-		fi
-		# copying generated dtb to anykernel directory
-		if [ -e output_klteduos/arch/arm/boot/dt.img ]; then
-			mv -f output_klteduos/arch/arm/boot/dt.img anykernel_SmartPack/dtb
-		fi
-	fi
-	echo -e $COLOR_GREEN"\n generating recovery flashable zip file\n"$COLOR_NEUTRAL
-	cd anykernel_SmartPack/ && zip -r9 $KERNEL_NAME-klteduos-$KERNEL_VERSION-$KERNEL_DATE.zip * -x README.md $KERNEL_NAME-klteduos-$KERNEL_VERSION-$KERNEL_DATE.zip && cd ..
-	echo -e $COLOR_GREEN"\n cleaning...\n"$COLOR_NEUTRAL
-	rm anykernel_SmartPack/zImage && mv anykernel_SmartPack/$KERNEL_NAME* release_SmartPack/
-	# restoring backups
-	mv release_SmartPack/mkcompile_h scripts/
-	mv release_SmartPack/SmartPack_@klteduos@_defconfig arch/arm/configs/
-	echo -e $COLOR_GREEN"\n building SmarPack-Kernel for klteduos is finished...\n"$COLOR_NEUTRAL
-else
-	# restoring backups
-	mv release_SmartPack/mkcompile_h scripts/
-	mv release_SmartPack/SmartPack_@klteduos@_defconfig arch/arm/configs/
 	echo -e $COLOR_GREEN"\n Building error... zImage not found...\n"$COLOR_NEUTRAL
 fi
 
