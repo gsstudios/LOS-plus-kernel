@@ -18,22 +18,22 @@
  * Volume boost value
  */
 
-unsigned int headphones_boost = 10;
+unsigned int headphones_boost = 0;
 
 /*
  * Headset boost value
  */
-unsigned int headset_boost = 10;
+unsigned int headset_boost = 0;
 
 /*
  * Speaker boost value
  */
-unsigned int speaker_boost = 3;
+unsigned int speaker_boost = 0;
 
 /*
  * Mic boost value
  */
-unsigned int mic_boost = 10;
+unsigned int mic_boost = 0;
 
 /*
  * Sysfs get/set entries
