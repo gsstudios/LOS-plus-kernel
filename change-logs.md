@@ -1,4 +1,10 @@
-# Change-logs
+# Unofficial SP Change-logs
+
+## 1. Jan ??, 2018 
+Stable release: v1
+Removed UKSM, sound control, GPU underclock, enabled O3 compilation, changed default IO sched to ZEN, removed Mako hotplug, decrease VFS cache pressure, minor zzmoove tweaks. Remove test IO scheduler.
+
+# Original SP Change-logs
 
 ## 41. Dec 21, 2017
 Stable release: v11_r5

@@ -119,10 +119,10 @@ config CPU_FREQ_DEFAULT_GOV_INTERACTIVE
 	  'interactive' governor for latency-sensitive workloads.
 
 config CPU_FREQ_DEFAULT_GOV_ZZMOOVE
-	  bool "zzmoove"
-	  select CPU_FREQ_GOV_ZZMOOVE
-	  select CPU_FREQ_GOV_PERFORMANCE
-	  help
+	bool "zzmoove"
+	select CPU_FREQ_GOV_ZZMOOVE
+	select CPU_FREQ_GOV_PERFORMANCE
+	help
 	  Use the CPUFreq governor 'zzmoove' as default, using predefined
 	  frequency lookup tables and optimized scaling triggers instead of
 	  % frequency steps to get smooth up/downscaling dependant on CPU load.
@@ -167,10 +167,10 @@ config CPU_FREQ_DEFAULT_GOV_SMARTMAX
           Use the CPUFreq governor 'smartmax' as default
 
 config CPU_FREQ_DEFAULT_GOV_LIONHEART
-            bool "lionheart"
-            select CPU_FREQ_GOV_LIONHEART
-            help
-              Use the CPUFreq governor 'lionheart' as default.
+        bool "lionheart"
+        select CPU_FREQ_GOV_LIONHEART
+        help
+          Use the CPUFreq governor 'lionheart' as default.
 
 config CPU_FREQ_DEFAULT_GOV_ADAPTIVE
 	bool "adaptive"
@@ -342,8 +342,9 @@ config CPU_FREQ_GOV_LIONHEART
 	depends on CPU_FREQ
 	default y
 	help
-             lionheart' - a "smart" optimized governor!
-             If in doubt, say N.
+           lionheart' - a "smart" optimized governor!
+
+           If in doubt, say N.
 
 config CPU_FREQ_GOV_ADAPTIVE
 	tristate "'adaptive' cpufreq policy governor"
