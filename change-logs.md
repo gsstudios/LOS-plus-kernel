@@ -2,7 +2,7 @@
 
 ## 1. Jan ??, 2018 
 Stable release: v1
-Removed UKSM, sound control, GPU underclock, enabled O3 compilation, changed default IO sched to ZEN, removed Mako hotplug, decrease VFS cache pressure, minor zzmoove tweaks. Remove test IO scheduler.
+Removed UKSM, sound control, GPU underclock, adreno idler, Mako hotplug. Minor zzmoove tweaks. Remove test IO scheduler. Added ondemandplus, impulse and yankactive governors. Disabled crc for performance boost and exposed sysfs. 
 
 # Original SP Change-logs
 

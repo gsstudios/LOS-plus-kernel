@@ -47,7 +47,7 @@ TOOLCHAIN="/home/josh/toolchain/linaro/bin/arm-linaro-linux-androideabi-"
 
 ARCHITECTURE="arm"
 
-KERNEL_NAME="SmartPack-Kernel-Unofficial"
+KERNEL_NAME="SmartPack-Kernel-Redux"
 
 KERNEL_VERSION="stable-v1"   # leave as such, if no specific version tag
 
