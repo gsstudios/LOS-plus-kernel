@@ -1,4 +1,4 @@
-CE_SYSTEM
+#undef TRACE_SYSTEM
 #define TRACE_SYSTEM cpufreq_ondemandplus
 
 #if !defined(_TRACE_CPUFREQ_ONDEMANDPLUS_H) || defined(TRACE_HEADER_MULTI_READ)
