@@ -391,6 +391,7 @@ config CPU_FREQ_GOV_ADAPTIVE
 
 config CPU_FREQ_GOV_IMPULSE
 	tristate "'impulse' cpufreq policy governor"
+        default y
 	help
 	  'impulse' - This driver adds a dynamic cpufreq policy governor
 	  designed for optimized balance between power and performance.
@@ -400,10 +401,12 @@ config CPU_FREQ_GOV_IMPULSE
 config CPU_FREQ_GOV_ONDEMANDPLUS
 	tristate "'ondemandplus' cpufreq governor"
 	depends on CPU_FREQ
+	default y
 
 config CPU_FREQ_GOV_YANKACTIVE
-	  tristate "'yankactive' cpufreq policy governor"
-	  help
+	tristate "'yankactive' cpufreq policy governor"
+        default y
+	help
 	  'yankactive' - This driver adds a dynamic cpufreq policy governor
 	  designed for latency-sensitive workloads.
 	  The governor is based on interactive with just different default settings
