@@ -1,15 +1,16 @@
 #
-# SmartPack-Kernel (AnyKernel) Script
+# SmartPack-Kernel Redux (AnyKernel) Script
 #
 # Credits: osm0sis @ xda-developers
 #
-# Modified by sunilpaulmathew@xda-developers.com
+# Originally modified by sunilpaulmathew@xda-developers.com
+# Kernel by Saber@xda-developers.com
 #
 
 ## AnyKernel setup
 # begin properties
 properties() {
-kernel.string=SmartPack Kernel by sunilpaulmathew@xda-developers.com
+kernel.string=SmartPack Kernel Redux by Saber@xda-developers.com
 do.devicecheck=1
 do.modules=0
 do.cleanup=1
