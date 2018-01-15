@@ -32,11 +32,11 @@
 # the supported variants one after another.
 #
 
-# 1. Properly locate Stock, UBER & Linaro toolchains (Line# 42, 44 & 46)
-# 2. Select the preferred toolchain for building (Line# 48)
-# 3. Open Terminal, ‘cd’ to the Kernel ‘root’ folder and run ‘. build_LOS_plus.sh’
-# 4. The output (anykernel zip) file will be generated in the ‘release_LOS_plus’ folder
-# 5. Enjoy your new Kernel
+# 1. Properly locate toolchain
+# 3. Ensure you are root user. If not, go away! (Needed for ccache)
+# 4. Open Terminal, ‘cd’ to the Kernel ‘root’ folder and run ‘.\build_LOS_plus.sh’
+# 5. The output (anykernel zip) file will be generated in the ‘release_LOS_plus’ folder
+# 6. Enjoy your new Kernel
 
 #
 # ***** ***** *Variables to be configured manually* ***** ***** #
