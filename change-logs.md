@@ -1,5 +1,9 @@
 # Change-logs
 
+## 3. Jan 18, 2018
+Stable release: v1_r2
+Removed o3 optimisations. Synced latest changes from LOS kernel git. Synced latest anykernel changes. Increased read ahead for internal + external storage to 512KB. Enabled kernel NTFS support. Merged a few perf fixes + improvements for IO schedulers. msm_adreno_tz will use lowest freq when no load (thanks to Lord Boeffla). 
+
 ## 2. Jan 15, 2018
 Stable release: v1_r1
 Removed CPU unclocking
