@@ -4,6 +4,7 @@
 # LOS-plus-Kernel Boot Script
 # 
 # Author: sunilpaulmathew <sunil.kde@gmail.com>
+# Modified by: Joshua Lay <mugiisstronk@gmail.com>
 #
 
 #
@@ -27,6 +28,24 @@ echo "Executing LOS plus Boot Script" | tee /dev/kmsg
 echo 1190400 1497600 > /sys/kernel/cpu_input_boost/ib_freqs
 echo 1400 > /sys/kernel/cpu_input_boost/ib_duration_ms
 echo 1 > /sys/kernel/cpu_input_boost/enabled
+
+#
+# Disable mpdecision & enable Intelliplug
+#
+stop mpdecision
+echo 1 > /sys/module/intelli_plug/parameters/intelli_plug_active
+
+#
+# Enable intelli_thermal
+#
+echo 0 > /sys/module/msm_thermal/vdd_restriction/enabled
+echo 0 > /sys/module/msm_thermal/core_control/enabled
+echo Y > /sys/module/msm_thermal/parameters/enabled
+
+#
+# Increase internal readahead value to 1024KB
+#
+echo 1024 > /sys/block/mmcblk0/queue/read_ahead_kb
 
 #
 # Done!
