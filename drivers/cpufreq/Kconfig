@@ -203,6 +203,12 @@ config CPU_FREQ_DEFAULT_GOV_YANKACTIVE
 	   loading your cpufreq low-level hardware driver, using the
 	   'yankactive' governor for latency-sensitive workloads.
 
+config CPU_FREQ_DEFAULT_GOV_SMARTMAX_EPS
+        bool "smartmax_eps"
+        select CPU_FREQ_GOV_SMARTMAX_EPS
+        help
+	  Use the CPUFreq governor 'smartmax eps' as default
+
 endchoice
 
 config CPU_FREQ_GOV_PERFORMANCE
@@ -412,6 +418,12 @@ config CPU_FREQ_GOV_YANKACTIVE
 	  The governor is based on interactive with just different default settings
 	  and can be achieved using interactive with a script. This is added for
 	  simplification purposes for myself.
+
+config CPU_FREQ_GOV_SMARTMAX_EPS
+        tristate "'smartmax EPS' cpufreq policy governor"
+        select CPU_FREQ_TABLE
+        help
+	  'smartmax EPS' is the extreme powersaving version of smartmax
 
 config CPU_INPUT_BOOST
 	bool "CPU Input Boost"
