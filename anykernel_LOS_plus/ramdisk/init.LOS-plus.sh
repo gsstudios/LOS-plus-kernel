@@ -36,8 +36,9 @@ stop mpdecision
 echo 1 > /sys/module/intelli_plug/parameters/intelli_plug_active
 
 #
-# Increase internal readahead value to 1024KB
+# Set Internal I/O defaults
 #
+echo zen > /sys/block/mmcblk0/queue/scheduler
 echo 1024 > /sys/block/mmcblk0/queue/read_ahead_kb
 
 #
