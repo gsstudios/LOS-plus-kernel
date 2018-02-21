@@ -422,6 +422,7 @@ config CPU_FREQ_GOV_YANKACTIVE
 config CPU_FREQ_GOV_SMARTMAX_EPS
         tristate "'smartmax EPS' cpufreq policy governor"
         select CPU_FREQ_TABLE
+	default y
         help
 	  'smartmax EPS' is the extreme powersaving version of smartmax
 
