@@ -1,5 +1,9 @@
 # Change-logs
 
+## 5. Feb 23, 2018
+Stable release: v1_r4
+Synced latest anykernel changes. Synced latest changes from LOS kernel git. Added Smartmax_eps gov. Added default boot values for hotplug and internal I/O read-ahead. Removed intelli thermal v2.0. Removed Alucard hotplug. Added back 27MHz GPU clock. Removed zzmoove native hotplug to prevent conflicts (again!). Support for kltekor and klteduos.
+
 ## 4. Jan 22, 2018
 Stable release: v1_r3 
 Synced changes from Smartpack kernel thanks to @sunilpaulmathew
