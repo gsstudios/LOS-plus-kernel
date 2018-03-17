@@ -43,7 +43,7 @@
 
 # Toolchains
 
-TOOLCHAIN="/home/josh/toolchain/uber-8.x/bin/arm-eabi-"
+TOOLCHAIN="/home/josh/toolchain/linaro/bin/arm-linaro-linux-androideabi-"
 
 ARCHITECTURE="arm"
 
