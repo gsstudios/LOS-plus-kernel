@@ -49,7 +49,7 @@ ARCHITECTURE="arm"
 
 KERNEL_NAME="LOS-plus-Kernel"
 
-KERNEL_VERSION="stable-v1_r4"   # leave as such, if no specific version tag
+KERNEL_VERSION="beta-v1_r5"   # leave as such, if no specific version tag
 
 KERNEL_DATE="$(date +"%Y%m%d")"
 

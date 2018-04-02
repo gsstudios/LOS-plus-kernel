@@ -1,5 +1,9 @@
 # Change-logs
 
+## 6. Apr 02, 2018
+Beta release: v1_r5 
+Synced updates from Smartpack kernel, added back 268MHz underclock
+
 ## 5. Feb 23, 2018
 Stable release: v1_r4
 Synced latest anykernel changes. Synced latest changes from LOS kernel git. Added Smartmax_eps gov. Added default boot values for hotplug and internal I/O read-ahead. Removed intelli thermal v2.0. Removed Alucard hotplug. Added back 27MHz GPU clock. Removed zzmoove native hotplug to prevent conflicts (again!). Support for kltekor and klteduos.
